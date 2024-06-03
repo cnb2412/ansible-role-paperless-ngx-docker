@@ -23,3 +23,18 @@ repos:
         stages: [commit]
       - id: check-shebang-scripts-are-executable
         stages: [commit]
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.16.1
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/ansible/ansible-lint.git
+    rev: v24.5.0
+    hooks:
+      - id: ansible-lint
+        files: \.(yaml|yml)$
+        name: Ansible Lint
+        description: Run configurations on .ansible-lint file
+        verbose: true
+        # args: [-p, ./ansible/*]
