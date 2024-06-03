@@ -3,3 +3,7 @@
 - name: Install required directories
   ansible.builtin.import_tasks: install_basis.yml
   when: paperless_ngx_docker_install
+
+- name: Remove directories and data
+  ansible.builtin.import_tasks: uninstall.yml
+  when: not paperless_ngx_docker_install
