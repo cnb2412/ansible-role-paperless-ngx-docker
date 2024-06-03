@@ -1,0 +1,5 @@
+---
+# tasks file for cnb2412.paperless-ngx-docker
+- name: Install required directories
+  ansible.builtin.import_tasks: install_basis.yml
+  when: paperless_ngx_docker_install

@@ -1,0 +1,4 @@
+---
+# defaults file for cnb2412.paperless-ngx-docker
+
+paperless_ngx_docker_install: true
