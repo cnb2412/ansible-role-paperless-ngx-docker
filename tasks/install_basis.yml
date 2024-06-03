@@ -9,7 +9,7 @@
 
 - name: Paperless base directory exists
   ansible.builtin.file:
-    path: "{{ item }}"
+    path: "{{ paperless_ngx_docker_basedir }}/{{ item }}"
     state: directory
     mode: "0755"
     owner: "root"
