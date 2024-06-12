@@ -9,3 +9,17 @@
     volumes:
       - "{{ paperless_ngx_docker_redis_path }}:/data"
     command: redis-server --appendonly yes # Enable AOF persistence (optional)
+
+- name: DB cpmtainer
+  community.docker.docker_container:
+    name: "{{ paperless_ngx_docker_db_container_name }}"
+    image: "{{ paperless_ngx_docker_db_image }}"
+    restart_policy: unless-stopped
+    state: started
+    pull: true
+    volumes:
+      - "{{ paperless_ngx_docker_db_path }}:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_DB: "{{ paperless_ngx_docker_db_name }}"
+      POSTGRES_USER: "{{ paperless_ngx_docker_db_user }}"
+      POSTGRES_PASSWORD: "{{ paperless_ngx_docker_db_password }}"

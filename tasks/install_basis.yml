@@ -16,7 +16,7 @@
     group: "root"
   loop:
     - "{{ paperless_ngx_docker_redis_path }}"
-    - "{{ paperless_ngx_docker_basedir }}/database"
+    - "{{ paperless_ngx_docker_db_path }}"
     - "{{ paperless_ngx_docker_basedir }}/data"
     - "{{ paperless_ngx_docker_basedir }}/media"
     - "{{ paperless_ngx_docker_basedir }}/export"

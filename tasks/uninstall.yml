@@ -1,7 +1,12 @@
 ---
-- name: Redis cache
+- name: Redis cache absent
   community.docker.docker_container:
     name: "{{ paperless_ngx_docker_redis_container_name }}"
+    state: absent
+
+- name: DB cpmtainerabsent
+  community.docker.docker_container:
+    name: "{{ paperless_ngx_docker_db_container_name }}"
     state: absent
 
 - name: Config Directory absent

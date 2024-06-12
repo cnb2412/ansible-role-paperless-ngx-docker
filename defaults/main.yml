@@ -4,8 +4,16 @@
 paperless_ngx_docker_install: true
 
 paperless_ngx_docker_basedir: "/opt/paperless-ngx"
-paperless_ngx_docker_redis_path: "{{ paperless_ngx_docker_basedir }}/redis"
 
 # Redis config
 paperless_ngx_docker_redis_image: docker.io/library/redis:7
 paperless_ngx_docker_redis_container_name: "paperless-redis"
+paperless_ngx_docker_redis_path: "{{ paperless_ngx_docker_basedir }}/redis"
+
+# DB Config
+paperless_ngx_docker_db_image: docker.io/library/postgres:latest
+paperless_ngx_docker_db_container_name: "paperless-db"
+paperless_ngx_docker_db_path: "{{ paperless_ngx_docker_basedir }}/database"
+paperless_ngx_docker_db_name: "paperless"
+paperless_ngx_docker_db_user: "paperless"
+paperless_ngx_docker_db_password: "changeme"
