@@ -19,7 +19,7 @@
     pull: true
     volumes:
       - "{{ paperless_ngx_docker_db_path }}:/var/lib/postgresql/data"
-    environment:
+    env:
       POSTGRES_DB: "{{ paperless_ngx_docker_db_name }}"
       POSTGRES_USER: "{{ paperless_ngx_docker_db_user }}"
       POSTGRES_PASSWORD: "{{ paperless_ngx_docker_db_password }}"
