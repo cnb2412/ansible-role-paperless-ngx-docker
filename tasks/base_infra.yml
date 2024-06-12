@@ -8,3 +8,4 @@
     pull: true
     volumes:
       - "{{ paperless_ngx_docker_redis_path }}:/data"
+    command: redis-server --appendonly yes # Enable AOF persistence (optional)

@@ -1,5 +1,10 @@
 ---
-- name: Config Directory exists
+- name: Redis cache
+  community.docker.docker_container:
+    name: "{{ paperless_ngx_docker_redis_container_name }}"
+    state: absent
+
+- name: Config Directory absent
   ansible.builtin.file:
     path: "{{ paperless_ngx_docker_basedir }}"
     state: absent
