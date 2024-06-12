@@ -28,9 +28,6 @@
   community.docker.docker_container:
     name: "{{ paperless_ngx_docker_app_container_name }}"
     image: "{{ paperless_ngx_docker_app_image }}"
-    depends_on:
-      - "{{ paperless_ngx_docker_redis_container_name }}"
-      - "{{ paperless_ngx_docker_db_container_name }}"
     restart_policy: unless-stopped
     ports:
       - 8000:8000
