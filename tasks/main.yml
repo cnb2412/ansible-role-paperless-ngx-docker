@@ -6,6 +6,7 @@
 
 - name: Db and cache container
   ansible.builtin.import_tasks: base_infra.yml
+  when: paperless_ngx_docker_install
 
 - name: Remove directories and data
   ansible.builtin.import_tasks: uninstall.yml
