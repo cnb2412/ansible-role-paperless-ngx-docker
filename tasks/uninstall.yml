@@ -4,9 +4,14 @@
     name: "{{ paperless_ngx_docker_redis_container_name }}"
     state: absent
 
-- name: DB cpmtainerabsent
+- name: DB cpmtainer absent
   community.docker.docker_container:
     name: "{{ paperless_ngx_docker_db_container_name }}"
+    state: absent
+
+- name: App cpmtainer absent
+  community.docker.docker_container:
+    name: "{{ paperless_ngx_docker_app_container_name }}"
     state: absent
 
 - name: Config Directory absent

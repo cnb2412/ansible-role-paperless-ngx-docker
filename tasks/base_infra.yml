@@ -23,3 +23,27 @@
       POSTGRES_DB: "{{ paperless_ngx_docker_db_name }}"
       POSTGRES_USER: "{{ paperless_ngx_docker_db_user }}"
       POSTGRES_PASSWORD: "{{ paperless_ngx_docker_db_password }}"
+
+- name: Paperless cpmtainer
+  community.docker.docker_container:
+    name: "{{ paperless_ngx_docker_app_container_name }}"
+    image: "{{ paperless_ngx_docker_app_image }}"
+    depends_on:
+      - "{{ paperless_ngx_docker_redis_container_name }}"
+      - "{{ paperless_ngx_docker_db_container_name }}"
+    restart_policy: unless-stopped
+    ports:
+      - 8000:8000
+    volumes:
+      - "{{ paperless_ngx_docker_app_data_path }}:/usr/src/paperless/data"
+      - "{{ paperless_ngx_docker_app_media_path }}:/usr/src/paperless/media"
+      - "{{ paperless_ngx_docker_app_exort_path }}:/usr/src/paperless/export"
+      - "{{ paperless_ngx_docker_app_consume_path }}:/usr/src/paperless/consume"
+    env:
+      PAPERLESS_SECRET_KEY: "{{ paperless_ngx_docker_app_password }}"
+      PAPERLESS_DBENGINE: "{{ paperless_ngx_docker_app_env_database_engine }}"
+      PAPERLESS_DBNAME: "{{ paperless_ngx_docker_db_name }}"
+      PAPERLESS_DBUSER: "{{ paperless_ngx_docker_db_user }}"
+      PAPERLESS_DBPASS: "{{ paperless_ngx_docker_db_password }}"
+      PAPERLESS_DBHOST: "{{ paperless_ngx_docker_db_container_name }}"
+      PAPERLESS_REDIS: "redis://{{ paperless_ngx_docker_redis_container_name }}:6379"

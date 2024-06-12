@@ -17,6 +17,7 @@
   loop:
     - "{{ paperless_ngx_docker_redis_path }}"
     - "{{ paperless_ngx_docker_db_path }}"
-    - "{{ paperless_ngx_docker_basedir }}/data"
-    - "{{ paperless_ngx_docker_basedir }}/media"
-    - "{{ paperless_ngx_docker_basedir }}/export"
+    - "{{ paperless_ngx_docker_app_data_path }}"
+    - "{{ paperless_ngx_docker_app_media_path }}"
+    - "{{ paperless_ngx_docker_app_exort_path }}"
+    - "{{ paperless_ngx_docker_app_consume_path }}"

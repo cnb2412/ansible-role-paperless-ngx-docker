@@ -17,3 +17,13 @@ paperless_ngx_docker_db_path: "{{ paperless_ngx_docker_basedir }}/database"
 paperless_ngx_docker_db_name: "paperless"
 paperless_ngx_docker_db_user: "paperless"
 paperless_ngx_docker_db_password: "changeme"
+
+# App
+paperless_ngx_docker_app_image: ghcr.io/paperless-ngx/paperless-ngx:latest
+paperless_ngx_docker_app_container_name: paperless-ngx
+paperless_ngx_docker_app_data_path: "{{ paperless_ngx_docker_basedir }}/data"
+paperless_ngx_docker_app_media_path: "{{ paperless_ngx_docker_basedir }}/media"
+paperless_ngx_docker_app_exort_path: "{{ paperless_ngx_docker_basedir }}/export"
+paperless_ngx_docker_app_consume_path: "{{ paperless_ngx_docker_basedir }}/incomming"
+paperless_ngx_docker_app_env_database_engine: "postgresql"
+paperless_ngx_docker_app_password: "changeme"
