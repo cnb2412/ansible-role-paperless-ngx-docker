@@ -1,0 +1,10 @@
+---
+- name: Run Redis cache
+  community.docker.docker_container:
+    name: "{{ paperless_ngx_docker_redis_container_name }}"
+    image: "{{ paperless_ngx_docker_redis_image }}"
+    state: started
+    restart_policy: unless-stopped
+    pull: true
+    volumes:
+      - "{{ paperless_ngx_docker_redis_path }}:/data"

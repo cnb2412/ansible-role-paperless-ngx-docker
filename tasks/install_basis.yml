@@ -9,14 +9,14 @@
 
 - name: Paperless base directory exists
   ansible.builtin.file:
-    path: "{{ paperless_ngx_docker_basedir }}/{{ item }}"
+    path: "{{ item }}"
     state: directory
     mode: "0755"
     owner: "root"
     group: "root"
   loop:
-    - "redis"
-    - "database"
-    - "data"
-    - "media"
-    - "export"
+    - "{{ paperless_ngx_docker_redis_path }}"
+    - "{{ paperless_ngx_docker_basedir }}/database"
+    - "{{ paperless_ngx_docker_basedir }}/data"
+    - "{{ paperless_ngx_docker_basedir }}/media"
+    - "{{ paperless_ngx_docker_basedir }}/export"
