@@ -5,6 +5,9 @@ paperless_ngx_docker_install: true
 
 paperless_ngx_docker_basedir: "/opt/paperless-ngx"
 
+# Docker config
+paperless_ngx_docker_dedicated_docker_network: false
+
 # Redis config
 paperless_ngx_docker_redis_image: docker.io/library/redis:7
 paperless_ngx_docker_redis_container_name: "paperless-redis"
