@@ -48,7 +48,7 @@
     ports: >-
       {{ omit
       if paperless_ngx_docker_reverse_proxy_enable
-      else ['8000:8000'] }}
+      else [paperless_ngx_docker_port ~':8000'] }}
     volumes:
       - "{{ paperless_ngx_docker_app_data_path }}:/usr/src/paperless/data"
       - "{{ paperless_ngx_docker_app_media_path }}:/usr/src/paperless/media"
