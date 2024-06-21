@@ -9,6 +9,11 @@
     name: "{{ paperless_ngx_docker_db_container_name }}"
     state: absent
 
+- name: Reverse proxy container absent
+  community.docker.docker_container:
+    name: "{{ paperless_ngx_docker_reverse_proxy_container_name }}"
+    state: absent
+
 - name: App container absent
   community.docker.docker_container:
     name: "{{ paperless_ngx_docker_app_container_name }}"

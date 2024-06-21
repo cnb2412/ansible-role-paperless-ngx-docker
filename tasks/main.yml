@@ -8,6 +8,12 @@
   ansible.builtin.import_tasks: base_infra.yml
   when: paperless_ngx_docker_install
 
+- name: Reverse proxy
+  ansible.builtin.import_tasks: reverse_proxy.yml
+  when:
+    - paperless_ngx_docker_install
+    - paperless_ngx_docker_reverse_proxy_enable
+
 - name: Remove directories and data
   ansible.builtin.import_tasks: uninstall.yml
   when: not paperless_ngx_docker_install

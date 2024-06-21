@@ -21,6 +21,11 @@ paperless_ngx_docker_db_name: "paperless"
 paperless_ngx_docker_db_user: "paperless"
 paperless_ngx_docker_db_password: "changeme"
 
+# Reverse Proxy
+paperless_ngx_docker_reverse_proxy_enable: false
+paperless_ngx_docker_reverse_proxy_container_name: "paperless-nginx"
+paperless_ngx_docker_reverse_proxy_image: "docker.io/library/nginx:stable-alpine-slim"
+
 # App
 paperless_ngx_docker_app_image: ghcr.io/paperless-ngx/paperless-ngx:latest
 paperless_ngx_docker_app_container_name: paperless-ngx
