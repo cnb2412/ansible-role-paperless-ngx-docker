@@ -62,3 +62,6 @@
       PAPERLESS_REDIS: "redis://{{ paperless_ngx_docker_redis_container_name }}:6379"
       PAPERLESS_ADMIN_USER: "{{ paperless_ngx_docker_app_admin_user }}"
       PAPERLESS_ADMIN_PASSWORD: "{{ paperless_ngx_docker_app_admin_password }}"
+      PAPERLESS_OCR_LANGUAGE: "{{ paperless_ngx_docker_app_ocr_language }}"
+      PAPERLESS_TIME_ZONE: "{{ paperless_ngx_docker_app_time_zone }}"
+      PAPERLESS_URL: "{{ paperless_ngx_docker_app_url }}"
