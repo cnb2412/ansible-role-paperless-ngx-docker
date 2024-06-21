@@ -21,3 +21,12 @@
     - "{{ paperless_ngx_docker_app_media_path }}"
     - "{{ paperless_ngx_docker_app_exort_path }}"
     - "{{ paperless_ngx_docker_app_consume_path }}"
+
+- name: Reverse Proxy config directory exists
+  ansible.builtin.file:
+    path: "{{ paperless_ngx_docker_reverse_proxy_path }}"
+    state: directory
+    mode: "0755"
+    owner: "root"
+    group: "root"
+  when: paperless_ngx_docker_reverse_proxy_enable

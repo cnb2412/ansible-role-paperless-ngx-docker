@@ -23,6 +23,7 @@ paperless_ngx_docker_db_password: "changeme"
 
 # Reverse Proxy
 paperless_ngx_docker_reverse_proxy_enable: false
+paperless_ngx_docker_reverse_proxy_path: "{{ paperless_ngx_docker_basedir }}/nginx"
 paperless_ngx_docker_reverse_proxy_container_name: "paperless-nginx"
 paperless_ngx_docker_reverse_proxy_image: "docker.io/library/nginx:stable-alpine-slim"
 
