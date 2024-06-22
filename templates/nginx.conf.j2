@@ -29,6 +29,7 @@ http {
     server {
         listen 443 ssl http2;
         listen   [::]:443 ssl http2 default_server;
+        server_name {{ paperless_ngx_docker_app_url | urlsplit("hostname") }};
 
         ssl_session_timeout 1d;
         ssl_session_cache shared:MozSSL:10m;  # about 40000 sessions
