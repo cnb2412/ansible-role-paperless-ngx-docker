@@ -27,8 +27,8 @@ http {
 {% if paperless_ngx_docker_reverse_proxy_ssl_key | length > 0 and
       paperless_ngx_docker_reverse_proxy_ssl_cert | length > 0 %}
     server {
-        listen 443;
-        listen   [::]:443 default_server;
+        listen 443 ssl http2;
+        listen   [::]:443 ssl http2 default_server;
 
         ssl_session_timeout 1d;
         ssl_session_cache shared:MozSSL:10m;  # about 40000 sessions
