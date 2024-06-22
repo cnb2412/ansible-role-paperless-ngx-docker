@@ -1,1 +1,3 @@
-nginx_config_file_name: "nginx.conf"
+_nginx_config_file_name: "nginx.conf"
+_nginx_ssl_in_container_cert_path: "/etc/nginx/ssl/fullchain.pem"
+_nginx_ssl_in_container_key_path: "/etc/nginx/ssl/privkey.pem"

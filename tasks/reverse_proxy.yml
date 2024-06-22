@@ -2,7 +2,7 @@
 - name: Nginx Config
   ansible.builtin.template:
     src: nginx.conf.j2
-    dest: "{{ paperless_ngx_docker_reverse_proxy_path }}/{{ nginx_config_file_name }}"
+    dest: "{{ paperless_ngx_docker_reverse_proxy_path }}/{{ _nginx_config_file_name }}"
     owner: root
     group: root
     mode: "0640"
@@ -21,4 +21,7 @@
     ports:
       - "{{ paperless_ngx_docker_port }}:80"
     volumes:
-      - "{{ paperless_ngx_docker_reverse_proxy_path }}/{{ nginx_config_file_name }}:/etc/nginx/nginx.conf"
+      - "{{ paperless_ngx_docker_reverse_proxy_path }}/{{ _nginx_config_file_name }}:/etc/nginx/nginx.conf"
+      - >-
+        {{ omit if paperless_ngx_docker_reverse_proxy_ssl_key | length == 0
+          else  paperless_ngx_docker_reverse_proxy_ssl_key~':'~_nginx_ssl_in_container_key_path}}
