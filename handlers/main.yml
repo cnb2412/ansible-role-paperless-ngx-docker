@@ -1,0 +1,5 @@
+---
+- name: Restart nginx container
+  ansible.builtin.command: docker restart {{ paperless_ngx_docker_reverse_proxy_container_name }}
+  changed_when: true
+  when: not nginx_container_run.changed
