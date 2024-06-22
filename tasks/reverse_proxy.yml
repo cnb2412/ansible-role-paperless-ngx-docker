@@ -2,7 +2,7 @@
 - name: Nginx Config
   ansible.builtin.template:
     src: nginx.conf.j2
-    dest: paperless_ngx_docker_reverse_proxy_path/{{ nginx_config_file_name }}
+    dest: "{{ paperless_ngx_docker_reverse_proxy_path }}/{{ nginx_config_file_name }}"
     owner: root
     group: root
     mode: "0640"
