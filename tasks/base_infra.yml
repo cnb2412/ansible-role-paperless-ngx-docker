@@ -67,5 +67,5 @@
       PAPERLESS_OCR_LANGUAGE: "{{ paperless_ngx_docker_app_ocr_language }}"
       PAPERLESS_TIME_ZONE: "{{ paperless_ngx_docker_app_time_zone }}"
       PAPERLESS_URL: "{{ paperless_ngx_docker_app_url }}"
-      PAPERLESS_USE_X_FORWARD_HOST: "{{ paperless_ngx_docker_app_use_x_forward_host }}"
-      PAPERLESS_USE_X_FORWARD_PORT: "{{ paperless_ngx_docker_app_use_x_forward_port }}"
+      PAPERLESS_USE_X_FORWARD_HOST: "{{ paperless_ngx_docker_app_use_x_forward_host | string }}"
+      PAPERLESS_USE_X_FORWARD_PORT: "{{ paperless_ngx_docker_app_use_x_forward_port | string }}"
