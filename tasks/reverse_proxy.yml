@@ -21,12 +21,10 @@
       else [{'name': paperless_ngx_docker_dedicated_docker_network_name}] }}
     ports:
       - >-
-        {% if paperless_ngx_docker_reverse_proxy_ssl_key | length > 0 and
-           paperless_ngx_docker_reverse_proxy_ssl_cert | length > 0 %}
-           {{ paperless_ngx_docker_port }}:443
-        {% else %}
-          {{ paperless_ngx_docker_port }}:80
-        {% endif %}
+        {{ paperless_ngx_docker_port~':443'
+           if paperless_ngx_docker_reverse_proxy_ssl_key | length > 0
+           and paperless_ngx_docker_reverse_proxy_ssl_cert | length > 0
+           else paperless_ngx_docker_port~':80' }}
     volumes:
       - "{{ paperless_ngx_docker_reverse_proxy_path }}/{{ _nginx_config_file_name }}:/etc/nginx/nginx.conf"
       - >-
