@@ -6,6 +6,7 @@
     owner: root
     group: root
     mode: "0640"
+  notify: Restart nginx container
 
 - name: Run Nginx proxy
   community.docker.docker_container:
@@ -25,4 +26,8 @@
       - >-
         {{ paperless_ngx_docker_reverse_proxy_ssl_key~':'~_nginx_ssl_in_container_key_path~':ro'
            if paperless_ngx_docker_reverse_proxy_ssl_key | length > 0
-           else '/dev/null:'~_nginx_ssl_in_container_key_path~':ro'}}
+           else '/dev/null:'~_nginx_ssl_in_container_key_path~':ro' }}
+      - >-
+        {{ paperless_ngx_docker_reverse_proxy_ssl_cert~':'~_nginx_ssl_in_container_cert_path~':ro'
+          if paperless_ngx_docker_reverse_proxy_ssl_cert | length > 0
+          else '/dev/null:'~_nginx_ssl_in_container_cert_path~':ro' }}
