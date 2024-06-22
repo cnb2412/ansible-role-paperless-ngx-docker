@@ -24,8 +24,8 @@ http {
             add_header Referrer-Policy "strict-origin-when-cross-origin";
         }
     }
-{% if paperless_ngx_docker_reverse_proxy_ssl_key | legnth > 0 and
-      paperless_ngx_docker_reverse_proxy_ssl_cert | legnth > 0 %}
+{% if paperless_ngx_docker_reverse_proxy_ssl_key | length > 0 and
+      paperless_ngx_docker_reverse_proxy_ssl_cert | length > 0 %}
     server {
         listen 443;
         listen   [::]:443 default_server;
