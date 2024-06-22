@@ -24,4 +24,5 @@
       - "{{ paperless_ngx_docker_reverse_proxy_path }}/{{ _nginx_config_file_name }}:/etc/nginx/nginx.conf"
       - >-
         {{ paperless_ngx_docker_reverse_proxy_ssl_key~':'~_nginx_ssl_in_container_key_path~':ro'
-           if paperless_ngx_docker_reverse_proxy_ssl_key | length > 0 }}
+           if paperless_ngx_docker_reverse_proxy_ssl_key | length > 0
+           else '/dev/null:'~_nginx_ssl_in_container_key_path~':ro'}}
