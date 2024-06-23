@@ -55,6 +55,8 @@
       - "{{ paperless_ngx_docker_app_exort_path }}:/usr/src/paperless/export"
       - "{{ paperless_ngx_docker_app_consume_path }}:/usr/src/paperless/consume"
     env:
+      USERMAP_UID: "{{ paperless_ngx_docker_app_usermap_uid }}"
+      USERMAP_GID: "{{ paperless_ngx_docker_app_usermap_gid }}"
       PAPERLESS_SECRET_KEY: "{{ paperless_ngx_docker_app_secret_key }}"
       PAPERLESS_DBENGINE: "{{ paperless_ngx_docker_app_env_database_engine }}"
       PAPERLESS_DBNAME: "{{ paperless_ngx_docker_db_name }}"
