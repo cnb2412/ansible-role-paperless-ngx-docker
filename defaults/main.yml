@@ -4,6 +4,8 @@
 paperless_ngx_docker_install: true
 
 paperless_ngx_docker_basedir: "/opt/paperless-ngx"
+paperless_ngx_docker_group_host: "paperless"
+paperless_ngx_docker_user_host: "paperless"
 
 # Docker config
 paperless_ngx_docker_dedicated_docker_network_name: ""

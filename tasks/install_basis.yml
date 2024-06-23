@@ -1,4 +1,23 @@
 ---
+- name: Ensure group paperless-ngx exists
+  ansible.builtin.group:
+    name: "{{ paperless_ngx_docker_group_host }}"
+    state: present
+  when:
+    - paperless_ngx_docker_user_host | length > 0
+    - paperless_ngx_docker_group_host | length > 0
+
+- name: Create paperless user
+  ansible.builtin.user:
+    name: "{{ paperless_ngx_docker_user_host }}"
+    state: present
+    shell: "/usr/bin/false"
+    system: true
+    group: "{{ paperless_ngx_docker_group_host }}"
+  when:
+    - paperless_ngx_docker_user_host | length > 0
+    - paperless_ngx_docker_group_host | length > 0
+
 - name: Paperless base directory exists
   ansible.builtin.file:
     path: "{{ paperless_ngx_docker_basedir }}"
