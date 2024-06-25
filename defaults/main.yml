@@ -34,8 +34,8 @@ paperless_ngx_docker_reverse_proxy_ssl_cert: ""
 # App
 paperless_ngx_docker_app_image: ghcr.io/paperless-ngx/paperless-ngx:latest
 paperless_ngx_docker_app_container_name: paperless-ngx
-paperless_ngx_docker_app_usermap_uid: 0
-paperless_ngx_docker_app_usermap_gid: 0
+paperless_ngx_docker_app_usermap_uid: "0"
+paperless_ngx_docker_app_usermap_gid: "0"
 paperless_ngx_docker_app_data_path: "{{ paperless_ngx_docker_basedir }}/data"
 paperless_ngx_docker_app_media_path: "{{ paperless_ngx_docker_basedir }}/media"
 paperless_ngx_docker_app_exort_path: "{{ paperless_ngx_docker_basedir }}/export"
