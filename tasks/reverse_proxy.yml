@@ -14,6 +14,13 @@
     image: "{{ paperless_ngx_docker_reverse_proxy_image }}"
     state: started
     restart_policy: unless-stopped
+    user: >-
+      {{ omit
+      if paperless_ngx_docker_user_host | length == 0 and
+         paperless_ngx_docker_group_host | length == 0
+      else
+        paperless_ngx_docker_user_host~':'~paperless_ngx_docker_group_host
+      }}
     pull: true
     networks: >-
       {{ omit
