@@ -42,4 +42,5 @@
         {{ paperless_ngx_docker_reverse_proxy_ssl_cert~':'~_nginx_ssl_in_container_cert_path~':ro'
           if paperless_ngx_docker_reverse_proxy_ssl_cert | length > 0
           else '/dev/null:'~_nginx_ssl_in_container_cert_path~':ro' }}
+      - "/etc/passwd:/etc/passwd:ro"
   register: nginx_container_run
