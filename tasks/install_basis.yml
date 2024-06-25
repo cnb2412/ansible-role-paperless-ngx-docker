@@ -48,6 +48,6 @@
     path: "{{ paperless_ngx_docker_reverse_proxy_path }}"
     state: directory
     mode: "0755"
-    owner: "root"
-    group: "root"
+    owner: "{{ 'root' if paperless_ngx_docker_user_host | length == 0 else paperless_ngx_docker_user_host }}"
+    group: "{{ 'root' if paperless_ngx_docker_group_host | length == 0 else paperless_ngx_docker_group_host }}"
   when: paperless_ngx_docker_reverse_proxy_enable
