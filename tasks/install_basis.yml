@@ -6,6 +6,7 @@
   when:
     - paperless_ngx_docker_user_host | length > 0
     - paperless_ngx_docker_group_host | length > 0
+  register: paperless_group
 
 - name: Create paperless user
   ansible.builtin.user:
@@ -17,6 +18,7 @@
   when:
     - paperless_ngx_docker_user_host | length > 0
     - paperless_ngx_docker_group_host | length > 0
+  register: paperless_user
 
 - name: Paperless base directory exists
   ansible.builtin.file:

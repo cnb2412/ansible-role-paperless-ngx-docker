@@ -30,7 +30,7 @@
       if paperless_ngx_docker_user_host | length == 0 and
          paperless_ngx_docker_group_host | length == 0
       else
-        paperless_ngx_docker_user_host~':'~paperless_ngx_docker_group_host
+        paperless_user.uid~':'~paperless_group.gid
       }}
     networks: >-
       {{ omit
@@ -39,6 +39,7 @@
     volumes:
       - "{{ paperless_ngx_docker_db_path }}:/var/lib/postgresql/data"
       - "/etc/passwd:/etc/passwd:ro"
+      - "/etc/group:/etc/group:ro"
     env:
       POSTGRES_DB: "{{ paperless_ngx_docker_db_name }}"
       POSTGRES_USER: "{{ paperless_ngx_docker_db_user }}"
