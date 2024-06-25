@@ -23,16 +23,16 @@
     path: "{{ paperless_ngx_docker_basedir }}"
     state: directory
     mode: "0755"
-    owner: "{{ root if paperless_ngx_docker_user_host | length == 0 else paperless_ngx_docker_user_host }}"
-    group: "{{ root if paperless_ngx_docker_group_host | length == 0 else paperless_ngx_docker_group_host }}"
+    owner: "{{ 'root' if paperless_ngx_docker_user_host | length == 0 else paperless_ngx_docker_user_host }}"
+    group: "{{ 'root' if paperless_ngx_docker_group_host | length == 0 else paperless_ngx_docker_group_host }}"
 
 - name: Paperless base directory exists
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: "0755"
-    owner: "{{ root if paperless_ngx_docker_user_host | length == 0 else paperless_ngx_docker_user_host }}"
-    group: "{{ root if paperless_ngx_docker_group_host | length == 0 else paperless_ngx_docker_group_host }}"
+    owner: "{{ 'root' if paperless_ngx_docker_user_host | length == 0 else paperless_ngx_docker_user_host }}"
+    group: "{{ 'root' if paperless_ngx_docker_group_host | length == 0 else paperless_ngx_docker_group_host }}"
   loop:
     - "{{ paperless_ngx_docker_redis_path }}"
     - "{{ paperless_ngx_docker_db_path }}"
