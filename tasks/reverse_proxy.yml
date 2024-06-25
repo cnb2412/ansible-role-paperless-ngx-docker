@@ -14,13 +14,6 @@
     image: "{{ paperless_ngx_docker_reverse_proxy_image }}"
     state: started
     restart_policy: unless-stopped
-    user: >-
-      {{ omit
-      if paperless_ngx_docker_user_host | length == 0 and
-         paperless_ngx_docker_group_host | length == 0
-      else
-        paperless_ngx_docker_user_host~':'~paperless_ngx_docker_group_host
-      }}
     pull: true
     networks: >-
       {{ omit
@@ -33,7 +26,7 @@
            and paperless_ngx_docker_reverse_proxy_ssl_cert | length > 0
            else paperless_ngx_docker_port~':80' }}
     volumes:
-      - "{{ paperless_ngx_docker_reverse_proxy_path }}/{{ _nginx_config_file_name }}:/etc/nginx/nginx.conf"
+      - "{{ paperless_ngx_docker_reverse_proxy_path }}/{{ _nginx_config_file_name }}:/etc/nginx/nginx.conf:ro"
       - >-
         {{ paperless_ngx_docker_reverse_proxy_ssl_key~':'~_nginx_ssl_in_container_key_path~':ro'
            if paperless_ngx_docker_reverse_proxy_ssl_key | length > 0
@@ -42,5 +35,4 @@
         {{ paperless_ngx_docker_reverse_proxy_ssl_cert~':'~_nginx_ssl_in_container_cert_path~':ro'
           if paperless_ngx_docker_reverse_proxy_ssl_cert | length > 0
           else '/dev/null:'~_nginx_ssl_in_container_cert_path~':ro' }}
-      - "/etc/passwd:/etc/passwd:ro"
   register: nginx_container_run
