@@ -11,6 +11,13 @@
     state: started
     restart_policy: unless-stopped
     pull: true
+    user: >-
+      {{ omit
+      if paperless_ngx_docker_user_host | length == 0 and
+         paperless_ngx_docker_group_host | length == 0
+      else
+        paperless_user.uid~':'~paperless_group.gid
+      }}
     volumes:
       - "{{ paperless_ngx_docker_redis_path }}:/data"
     # command: redis-server --appendonly yes # Enable AOF persistence (optional)
@@ -64,8 +71,8 @@
       - "{{ paperless_ngx_docker_app_exort_path }}:/usr/src/paperless/export"
       - "{{ paperless_ngx_docker_app_consume_path }}:/usr/src/paperless/consume"
     env:
-      USERMAP_UID: "{{ paperless_ngx_docker_app_usermap_uid }}"
-      USERMAP_GID: "{{ paperless_ngx_docker_app_usermap_gid }}"
+      USERMAP_UID: "{{ paperless_user.uid }}"
+      USERMAP_GID: "{{ paperless_group.gid }}"
       PAPERLESS_SECRET_KEY: "{{ paperless_ngx_docker_app_secret_key }}"
       PAPERLESS_DBENGINE: "{{ paperless_ngx_docker_app_env_database_engine }}"
       PAPERLESS_DBNAME: "{{ paperless_ngx_docker_db_name }}"
