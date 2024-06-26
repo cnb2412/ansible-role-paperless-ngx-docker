@@ -32,7 +32,7 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    mode: "0755"
+    mode: "0700"
     owner: "{{ 'root' if paperless_ngx_docker_user_host | length == 0 else paperless_ngx_docker_user_host }}"
     group: "{{ 'root' if paperless_ngx_docker_group_host | length == 0 else paperless_ngx_docker_group_host }}"
   loop:
