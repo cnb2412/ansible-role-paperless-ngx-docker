@@ -1,40 +1,19 @@
 ---
-- name: Ensure group paperless-ngx exists
-  ansible.builtin.group:
-    name: "{{ paperless_ngx_docker_group_host }}"
-    state: present
-  when:
-    - paperless_ngx_docker_user_host | length > 0
-    - paperless_ngx_docker_group_host | length > 0
-  register: paperless_group
-
-- name: Create paperless user
-  ansible.builtin.user:
-    name: "{{ paperless_ngx_docker_user_host }}"
-    state: present
-    shell: "/usr/bin/false"
-    system: true
-    group: "{{ paperless_ngx_docker_group_host }}"
-  when:
-    - paperless_ngx_docker_user_host | length > 0
-    - paperless_ngx_docker_group_host | length > 0
-  register: paperless_user
-
 - name: Paperless base directory exists
   ansible.builtin.file:
     path: "{{ paperless_ngx_docker_basedir }}"
     state: directory
     mode: "0755"
-    owner: "{{ 'root' if paperless_ngx_docker_user_host | length == 0 else paperless_ngx_docker_user_host }}"
-    group: "{{ 'root' if paperless_ngx_docker_group_host | length == 0 else paperless_ngx_docker_group_host }}"
+    owner: "{{ paperless_ngx_docker_user_host }}"
+    group: "{{ paperless_ngx_docker_group_host }}"
 
 - name: Paperless base directory exists
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: "0700"
-    owner: "{{ 'root' if paperless_ngx_docker_user_host | length == 0 else paperless_ngx_docker_user_host }}"
-    group: "{{ 'root' if paperless_ngx_docker_group_host | length == 0 else paperless_ngx_docker_group_host }}"
+    owner: "{{ paperless_ngx_docker_user_host }}"
+    group: "{{ paperless_ngx_docker_group_host }}"
   loop:
     - "{{ paperless_ngx_docker_redis_path }}"
     - "{{ paperless_ngx_docker_db_path }}"
@@ -48,6 +27,6 @@
     path: "{{ paperless_ngx_docker_reverse_proxy_path }}"
     state: directory
     mode: "0755"
-    owner: "{{ 'root' if paperless_ngx_docker_user_host | length == 0 else paperless_ngx_docker_user_host }}"
-    group: "{{ 'root' if paperless_ngx_docker_group_host | length == 0 else paperless_ngx_docker_group_host }}"
+    owner: "{{ paperless_ngx_docker_user_host }}"
+    group: "{{ paperless_ngx_docker_group_host }}"
   when: paperless_ngx_docker_reverse_proxy_enable

@@ -4,6 +4,17 @@
     name: "{{ paperless_ngx_docker_dedicated_docker_network_name }}"
   when: paperless_ngx_docker_dedicated_docker_network_name | length > 0
 
+- name: Gather available local users
+  ansible.builtin.getent:
+    database: passwd
+    key: "{{ paperless_ngx_docker_user_host }}"
+
+- name: Get all groups
+  ansible.builtin.getent:
+    database: group
+    key: "{{ paperless_ngx_docker_group_host }}"
+    split: ":"
+
 - name: Run Redis cache
   community.docker.docker_container:
     name: "{{ paperless_ngx_docker_redis_container_name }}"
@@ -11,13 +22,7 @@
     state: started
     restart_policy: unless-stopped
     pull: true
-    user: >-
-      {{ omit
-      if paperless_ngx_docker_user_host | length == 0 and
-         paperless_ngx_docker_group_host | length == 0
-      else
-        paperless_user.uid~':'~paperless_group.gid
-      }}
+    user: "{{ getent_passwd[paperless_ngx_docker_user_host].1 }}:{{ getent_group[paperless_ngx_docker_group_host].1 }}"
     volumes:
       - "{{ paperless_ngx_docker_redis_path }}:/data"
     # command: redis-server --appendonly yes # Enable AOF persistence (optional)
@@ -33,13 +38,7 @@
     restart_policy: unless-stopped
     state: started
     pull: true
-    user: >-
-      {{ omit
-      if paperless_ngx_docker_user_host | length == 0 and
-         paperless_ngx_docker_group_host | length == 0
-      else
-        paperless_user.uid~':'~paperless_group.gid
-      }}
+    user: "{{ getent_passwd[paperless_ngx_docker_user_host].1 }}:{{ getent_group[paperless_ngx_docker_group_host].1 }}"
     networks: >-
       {{ omit
       if paperless_ngx_docker_dedicated_docker_network_name | length == 0
@@ -72,8 +71,8 @@
       - "{{ paperless_ngx_docker_app_exort_path }}:/usr/src/paperless/export"
       - "{{ paperless_ngx_docker_app_consume_path }}:/usr/src/paperless/consume"
     env:
-      USERMAP_UID: "{{ paperless_user.uid }}"
-      USERMAP_GID: "{{ paperless_group.gid }}"
+      USERMAP_UID: "{{ getent_passwd[paperless_ngx_docker_user_host].1 }}"
+      USERMAP_GID: "{{ getent_group[paperless_ngx_docker_group_host].1 }}"
       PAPERLESS_SECRET_KEY: "{{ paperless_ngx_docker_app_secret_key }}"
       PAPERLESS_DBENGINE: "{{ paperless_ngx_docker_app_env_database_engine }}"
       PAPERLESS_DBNAME: "{{ paperless_ngx_docker_db_name }}"
